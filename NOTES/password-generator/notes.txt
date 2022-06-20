@@ -78,4 +78,11 @@ onChangeLength(event: any){
 
 
 ------generating random password-----
-
+//generate random password
+  onClick(){
+    
+	const number = 0123456789;
+	const letter = 'abcdefghijklmnopqrstuvwxyz';
+	const symbol = '!@#$%^&*()';
+  
+  }

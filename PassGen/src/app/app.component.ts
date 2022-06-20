@@ -17,7 +17,6 @@ export class AppComponent {
   onChangeLength(event: any){
     //type casting
     this.length = parseInt(event.target.value);
-    
   }
 
   onChangeUseLetter(){
@@ -34,8 +33,32 @@ export class AppComponent {
 
   //generate random password
   onClick(){
-    console.log(this.useLetter);
+    const numbers = 1234567890;
+    const letters = 'abcdefghijklmnopqrstuvwxyz';
+    const symbols = '!@#$%^&*()';
+
+    let validChars = '';
+
+    if(this.useLetter){
+      validChars += letters;
+    }
+    if(this.useNumber){
+      validChars += numbers;
+    }
+    if(this.useSymbol){
+      validChars += symbols;
+    }
+
+    let generatedPass = '';
+
+    for(let i = 0; i < this.length; i++){
+      const index = Math.floor(Math.random() * validChars.length);
+      generatedPass += validChars[index];
+
+      this.password = generatedPass;
+    }
   }
+ 
 
 
 }
