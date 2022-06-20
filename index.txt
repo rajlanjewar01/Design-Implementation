@@ -1,0 +1,13 @@
+Index:
+* ToDo: (Introduction)
+
+* Card: (component, Angular CLI)
+
+* Credit card: (form handling)
+
+* Password generator: (event binding, property binding, interpollation, tempalte syntax)
+
+* Portfolio (router)
+    Lazy load component*(both)
+
+* Wiki Search (Services, API Handling)

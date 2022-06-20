@@ -1,0 +1,81 @@
+(app.module.ts)
+import { ReactiveFormsModule } from '@angular/forms';
+@NgModule({
+  imports: [
+    ReactiveFormsModule
+  ],
+}
+
+---------------------Basic concept overview------------------
+
+-- Event binding syntax:
+(event on checkbox)
+
+
+<button type="submit" (click)="onClick()"> Click </button>
+
+-- property binding syntax:
+(app.component.ts)
+password: string = 'Password@11';
+
+(app.component.ts)
+<input type="text" [value]="password">
+
+
+-- interpollation:
+(app.component.ts)
+userName = 'John Doe';
+
+(app.component.html)
+<p>Username is: {{ userName }}  </p>
+
+
+
+--define template
+(app.component.html)
+<label>Letters</label>
+<input type="checkbox" (change)="useLetter()">
+
+<label>Number</label>
+<input type="checkbox" (change)="useNumber()">
+
+<label>Symbol</label>
+<input type="checkbox" (change)="useSymbol()">
+
+
+--define properties
+(app.component.ts)
+
+length = 0;
+password = '';
+useLetter = false;
+useNumber = false;
+useSymbol = false;
+
+
+
+
+useLetter(){
+	this.useLetter = !this.useLetter;
+}
+useNumber(){
+	this.useLetter = !this.useNumber;
+}
+useSymbol(){
+	this.useLetter = !this.useSymbol;
+}
+
+
+(app.component.html)
+<input type="number" placeholder="Enter Length" (input)="onChangeLength($event)">
+
+(app.component.ts)
+
+onChangeLength(event: any){
+   //type casting
+   this.length = parseInt(event.target.value);
+}
+
+
+------generating random password-----
+
