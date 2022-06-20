@@ -1,0 +1,15 @@
+<div class="row">
+    <div class="col-sm-12">
+        <div class="content">
+            <form [formGroup]="SearchFrm" (ngSubmit)="onSubmit()">
+                <h2>Type your Query to search in Wikipedia </h2>
+                <div class="input-group">
+                    <input type="text" class="form-control" placeholder="Enter Search term" formControlName="input">
+                    <span class="input-group-btn">
+                        <button class="btn" type="submit">Search Now</button>
+                    </span>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

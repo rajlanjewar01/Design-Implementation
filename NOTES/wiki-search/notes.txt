@@ -1,0 +1,133 @@
+1) ng g service wiki
+2) generate 2 component
+	-ng g component SearchBar
+	-ng g component PageList
+
+3) import form module & HTTPClient
+(app.module.ts)
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/core/http';
+import: [
+	ReactiveFormsModule,
+	HttpClientModule
+]
+
+
+
+
+
+
+-------child to parent communication--------
+(search-bar.component.ts)
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+
+export class SearchBarComponent implements OnInit {
+  @Output() submitted = new EventEmitter<string>();
+ 
+ }
+ 
+  onSubmit(){
+    if(this.SearchFrm.value.input !== ''){
+      this.input = this.SearchFrm.value.input;
+
+      this.submitted.emit(this.input);
+    }
+    
+  }
+  
+  (app.component.html)
+   <app-search-bar (submitted)="onTerm($event)"></app-search-bar>
+    
+	(app.component.ts)
+
+	export class AppComponent {
+	onTerm(terms: string){
+			console.log(terms);
+		}
+	}
+	
+-------------accessing services--------------
+	(wiki.service.ts)
+	import { HttpClient } from '@angular/common/http';
+	
+	export class WikiService {
+
+	constructor(private http: HttpClient) { }
+	
+	 export class WikiService {
+
+  constructor(private http: HttpClient) { }
+
+
+  WikiSearch(query: string){
+    return this.http.get(' https://en.wikipedia.org/w/api.php?',{
+    params: {
+      action : 'query&',
+      list : 'search&',
+      srsearch : query,
+      utf8 : '1' ,
+      format : 'json',
+      origin :'*'
+    }
+   })
+  }
+ }
+}
+
+---------parent to child communication------------
+(app.component.ts)
+export class AppComponent {
+  pages :any = [];
+
+  constructor(private http: WikiService ) {}
+
+  onTerm(terms: string){
+    const results =  this.http.WikiSearch(terms).
+    subscribe( (response: any) => {
+        this.pages = response.query.search;
+    })
+   
+  }
+}
+
+
+(app.component.html)
+<app-page-list [pages]="pages"></app-page-list>
+
+
+(page-list.component.ts)
+import { Component, OnInit, Input } from '@angular/core';
+
+export class PageListComponent implements OnInit {
+	@Input() pages = []; 
+}
+
+
+(page-list.component.html)
+	<tbody>
+        <tr *ngFor="let page of pages">
+			<th scope="row">1</th>
+			<td>{{ page.title }}</td>
+            <td>{{ page.wordcount }}</td>
+            <td>{{ page.description }}</td>
+        </tr>
+	</tbody>
+	
+	
+	
+	
+	
+	
+	
+	
+ The wikipedia API:
+ https://www.mediawiki.org/wiki/API:Main_page
+ 
+ URL:
+ https://en.wikipedia.org/w/api.php?
+ action = query
+ list = search
+ srsearch = Tesla
+ utf8 = 1
+ format = json
+ origin: "*"
