@@ -1,0 +1,56 @@
+<div class="signup-container">
+  <div class="left-container">
+    <h1>
+      <i class="fa fa-paw"></i>
+      PUPYCARE
+    </h1>
+    <div class="puppy">
+      <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/38816/image-from-rawpixel-id-542207-jpeg.png"/>
+    </div>
+  </div>
+  <div class="right-container">
+    <header>
+      <h1>Add Card Details! </h1>
+      <div class="set">
+        <div class="pets-name">
+          <label for="pets-name">Receiver Name</label>
+          <input id="pets-name" type="text" (input)="onNameChange($event)">
+        </div>
+        <div class="pets-name">
+          <label for="pets-name"><b>Receiver Name</b></label>
+          {{ receiversName | titlecase }}
+        </div>
+      </div>
+      <div class="set">
+        <div class="pets-breed">
+          <label for="pets-breed">Payment Date</label>
+          <input id="pets-breed" type="date" (input)="onDateChange($event)">
+        </div>
+        <div class="pets-name">
+          <label for="pets-name"><b>Payment Date</b></label>
+          {{ paymentDate | date }}
+        </div>
+      </div>
+      <div class="set">
+          <div class="pets-breed">
+            <label for="pets-breed">Payment Amount</label>
+            <input id="pets-breed" type="number" (input)="onAmtChange($event)">
+          </div>
+          <div class="pets-name">
+            <label for="pets-name"><b>Payment Amount</b></label>
+            {{ paymentAmt | currency:'INR' }}
+          </div>
+        </div>
+     
+  
+    </header>
+    <footer>
+      <div class="set">
+        <!-- <button id="back">Back</button>
+        <button id="next">Next</button> -->
+      </div>
+    </footer>
+  </div>
+</div>
+
+
