@@ -1,0 +1,29 @@
+<div class="container">
+  <!-- code here -->
+  <div class="card">
+      <div class="card-image">	
+          <h2 class="card-heading">
+              Typing Challenge
+              <small>Let start typing....</small>
+          </h2>
+      </div>
+    <p>
+        <span *ngFor="let letter of randomSentence.split(''); let i = index" [class]="getClass(letter, enteredText[i])">{{ letter }}</span>
+    </p>
+        
+        <div class="input">
+            <input type="text" class="input-field" value="" required (input)="onInput($event)"/>
+            <label class="input-label">Type the above Sentence</label>
+
+            <!-- <span *ngFor="let letter of randomSentence.split(''); let i = index" [class]="getClass(letter, enteredText[i])">
+                {{ letter }}
+            </span> -->
+        </div>
+        <div class="action" *ngIf="randomSentence === enteredText">
+            <button class="action-button" type="button">Congratulations 🎉</button>
+        </div>
+      <!-- <div class="card-info">
+        <p>By signing up you are agreeing to our <a href="#">Terms and Conditions</a></p>
+      </div> -->
+  </div>
+</div>

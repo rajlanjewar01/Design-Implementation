@@ -1,0 +1,10 @@
+span.incorrect{
+    color: red;
+}
+span.correct{
+    color: rgb(156, 239, 32);
+    font-weight: bold;
+}
+span.pending{
+    color: rgb(54, 54, 54);
+}

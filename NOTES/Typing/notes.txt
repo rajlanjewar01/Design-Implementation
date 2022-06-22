@@ -1,0 +1,61 @@
+---create app
+ng new Typing
+
+---install faker
+https://fakerjs.dev/guide/#environments
+npm install @faker-js/faker --save-dev
+
+under API -> Lorem -> Sentences
+
+
+(app.component.ts)
+import { faker } from '@faker-js/faker';
+
+export class AppComponent {
+  sentence = faker.lorem.sentence(5);
+}
+
+
+(app.component.html)
+<p>{{ sentence }}</p>
+
+
+
+-handling user input:
+(app.component.html)
+  <input type="text" class="input-field" value="" required (input)="onInput($event)"/>
+(app.component.ts)
+ onInput(event: any){
+    const value = event.target.value;
+ }
+ 
+ 
+ 
+ 
+ -conditional display
+	<div *ngIf="randomSentence === enteredText">
+        <p>Congratulations 🎉</p>
+    </div>
+	
+	
+---main logical part 
+--access the index
+
+(app.component.ts)
+export class AppComponent {
+  randomSentence = faker.lorem.sentence(5);
+  enteredText = '';
+  onInput(event: any){
+   this.enteredText = event.target.value;
+  }
+}
+
+
+(app.component.html)
+ <span *ngFor="let letter of randomSentence.split(''); let i = index">
+    {{ letter }} {{ enteredText[i] }}
+ </span>
+ 
+ 
+ 
+ ----styling by comparision
